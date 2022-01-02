@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "9f8897ed-c418-4fa5-85b9-673e029f32cf",
+		"name": "Posts (Negative)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Missing category",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Check status', function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 25,\n  \"name\": \"Missing category\",\n  \"photoUrls\": [\n  ],\n  \"tags\": [\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{serverUrl}}{{endpint}}",
+					"host": [
+						"{{serverUrl}}{{endpint}}"
+					]
+				},
+				"description": "Given a pet without category\n\nThen the pet should not be added"
+			},
+			"response": []
+		},
+		{
+			"name": "Empty body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Check status', function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{serverUrl}}{{endpint}}",
+					"host": [
+						"{{serverUrl}}{{endpint}}"
+					]
+				},
+				"description": "Given a pet without any information\n\nThen the pet should not be added"
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Check status', function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 25,\n  \"category\": {\n    \"id\": 0,\n    \"name\": \"string\"\n  },\n  \"name\": \"doggieeeee\",\n  \"photoUrls\": [\n    \"string\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 0,\n      \"name\": \"string\"\n    }\n  ],\n  \"status\": \"ImpossibleIsNothing\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{serverUrl}}{{endpint}}",
+					"host": [
+						"{{serverUrl}}{{endpint}}"
+					]
+				},
+				"description": "Given a pet without any information\n\nThen the pet should not be added"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "endpint",
+			"value": "/pet"
+		}
+	]
+}

@@ -1,0 +1,393 @@
+{
+	"info": {
+		"_postman_id": "ad206965-91d5-4fce-8678-1188b4ae285b",
+		"name": "Gets",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Validades that there're available pets",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Check status', function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test('Check that list is not empty', function () {",
+							"    const pets = pm.response.json();",
+							"    pm.expect(pets).to.be.an(\"array\");",
+							"    pm.expect(pets.length).to.be.greaterThan(0);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{serverUrl}}{{endpint}}?status=available",
+					"host": [
+						"{{serverUrl}}{{endpint}}"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "available"
+						}
+					]
+				},
+				"description": "Given there're available pets in the store.\n\nWhen a user asks for available pets\n\nThen a list of pets should be given\n\nBut the list should not be empty"
+			},
+			"response": []
+		},
+		{
+			"name": "Validates that all available pets have the defined attributes.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Check status', function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const pets = pm.response.json();",
+							"for (let i = 0; i < pets.length; i++) {",
+							"    let pet = pets[i];",
+							"",
+							"    pm.test('Check pets id', function () {",
+							"        pm.expect(pet).to.have.property('id')",
+							"    });",
+							"    pm.test('Check pets category', function () {",
+							"        pm.expect(pet).to.have.property('category')",
+							"    });",
+							"    pm.test('Check pets name', function () {",
+							"        pm.expect(pet).to.have.property('name')",
+							"    });",
+							"    pm.test('Check pets photoUrls', function () {",
+							"        pm.expect(pet).to.have.property('photoUrls')",
+							"    });",
+							"    pm.test('Check pets tags', function () {",
+							"        pm.expect(pet).to.have.property('tags')",
+							"    });",
+							"    pm.test('Check pets status', function () {",
+							"        pm.expect(pet).to.have.property('status')",
+							"    });",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{serverUrl}}{{endpint}}?status=available",
+					"host": [
+						"{{serverUrl}}{{endpint}}"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "available"
+						}
+					]
+				},
+				"description": "Given there're available pets\n\nWhen a user asks for available pets\n\nThen all given pets should have an id\n\nAnd all given pets should belong to a category\n\nAnd all given pets should have a name\n\nAnd all given pets should have a list of photo urls\n\nAnd all given pets should have a list of tags\n\nAnd all given pets should have a status"
+			},
+			"response": []
+		},
+		{
+			"name": "Validate that all available pets have the defined attribute types",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Check status', function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const pets = pm.response.json();",
+							"",
+							"for (let i = 0; i < pets.length; i++) {",
+							"    let pet = pets[i];",
+							"",
+							"    pm.test('Check pets id type', function () {",
+							"        pm.expect(pet.id).to.be.a('number')",
+							"    });",
+							"    pm.test('Check pets category type', function () {",
+							"        pm.expect(pet.category).to.be.an('object')",
+							"    });",
+							"    pm.test('Check pets name type', function () {",
+							"        pm.expect(pet.name).to.be.a('string')",
+							"    });",
+							"    pm.test('Check pets photoUrls type', function () {",
+							"        pm.expect(pet.photoUrls).to.be.an('array')",
+							"    });",
+							"    pm.test('Check tags id type', function () {",
+							"        pm.expect(pet.tags).to.be.an('array')",
+							"    });",
+							"    pm.test('Check pets status type', function () {",
+							"        pm.expect(pet.status).to.be.a('string')",
+							"    });",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{serverUrl}}{{endpint}}?status=available",
+					"host": [
+						"{{serverUrl}}{{endpint}}"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "available"
+						}
+					]
+				},
+				"description": "Given there're available pets\n\nWhen a user asks for available pets\n\nThen all given pets should have a number as id\n\nAnd all given pets should have an object as category\n\nAnd all given pets should have a text as name\n\nAnd all given pets should have an array as photo urls\n\nAnd all given pets should have an array as tags\n\nAnd all given pets should have a text as status"
+			},
+			"response": []
+		},
+		{
+			"name": "Validate that all available pets have the defined attributes for category",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Check status', function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const pets = pm.response.json();",
+							"",
+							"for (let i = 0; i < pets.length; i++) {",
+							"    let pet = pets[i];",
+							"    ",
+							"    pm.test('Pets category attributes', function () {",
+							"        pm.expect(pet).to.have.property('category')",
+							"        //Check the category's keys",
+							"        pm.expect(pet.category).to.have.property('id')",
+							"        pm.expect(pet.category).to.have.property('name')",
+							"        //Check the types of the category's values",
+							"        pm.expect(pet.category.id).to.be.a('number')",
+							"        pm.expect(pet.category.name).to.be.a('string')",
+							"    });",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{serverUrl}}{{endpint}}?status=available",
+					"host": [
+						"{{serverUrl}}{{endpint}}"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "available"
+						}
+					]
+				},
+				"description": "Given there're available pets\n\nWhen a user asks for available pets\n\nThen all given pet's category should have a number as id\n\nAnd all given pet's category should have a text as name"
+			},
+			"response": []
+		},
+		{
+			"name": "Validate that all available pets have the defined attributes for photo urls",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Check status', function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const pets = pm.response.json();",
+							"",
+							"for (let i = 0; i < pets.length; i++) {",
+							"    let pet = pets[i];",
+							"",
+							"    if (pet.hasOwnProperty('photoUrls') && pet.photoUrls.length > 0) {",
+							"        pm.test('Check pets photoUrls attributes type', function () {",
+							"            let urls = pet.photoUrls;",
+							"            let index = utils.generateRandomInt(0, urls.length - 1)",
+							"            let url = urls[index];",
+							"            pm.expect(url).to.be.a('string')",
+							"        });",
+							"    }",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{serverUrl}}{{endpint}}?status=available",
+					"host": [
+						"{{serverUrl}}{{endpint}}"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "available"
+						}
+					]
+				},
+				"description": "Given there're available pets\n\nWhen a user asks for available pets\n\nThen the given pet's photo's url should be a text"
+			},
+			"response": []
+		},
+		{
+			"name": "Validate that all available pets have the defined attributes for tags",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Check status', function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const pets = pm.response.json();",
+							"",
+							"for (let i = 0; i < pets.length; i++) {",
+							"    let pet = pets[0];",
+							"    if (pet.hasOwnProperty('tags') && pet.tags.length > 0) {",
+							"        let tags = pet.tags;",
+							"        let index = utils.generateRandomInt(0, tags.length - 1)",
+							"        let tag = tags[index]; //get a random tag",
+							"",
+							"        pm.test('Check tags properties', function () {",
+							"            pm.expect(tag).to.be.an('object')",
+							"            pm.expect(tag).to.have.property('id')",
+							"            pm.expect(tag).to.have.property('name')",
+							"        });",
+							"        pm.test('Check tag properties types', function () {",
+							"            pm.expect(tag.id).to.be.a('number')",
+							"            pm.expect(tag.name).to.be.an('string')",
+							"        });",
+							"    }",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{serverUrl}}{{endpint}}?status=available",
+					"host": [
+						"{{serverUrl}}{{endpint}}"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "available"
+						}
+					]
+				},
+				"description": "Given there're available pets\n\nWhen a user asks for available pets\n\nThen the given tags should have a number as id\n\nAnd the given tags should have a text as the name"
+			},
+			"response": []
+		},
+		{
+			"name": "Validate that all available pets have status available",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Check status', function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const pets = pm.response.json();",
+							"",
+							"for (let i = 0; i < pets.length; i++) {",
+							"    let pet = pets[i];",
+							"    pm.test('Check pet status', function () {",
+							"        pm.expect(pet.status).to.be.eq('available')",
+							"    });",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{serverUrl}}{{endpint}}?status=available",
+					"host": [
+						"{{serverUrl}}{{endpint}}"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "available"
+						}
+					]
+				},
+				"description": "Given there're available pets\n\nWhen a user asks for available pets\n\nThen all the given pets should have the status 'available'"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"utils = {",
+					"    generateRandomInt: function (min, max) {",
+					"        return Math.round((Math.random() * Math.abs(max - min)) + min);",
+					"    }",
+					"};"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "endpint",
+			"value": "/pet/findByStatus"
+		}
+	]
+}
